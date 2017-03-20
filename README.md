@@ -21,7 +21,7 @@ To enable this DHCP provider, edit `/etc/foreman-proxy/settings.d/dhcp.yml` and 
     :server: IP address of dhcpd server
     :subnets: subnets you want to use (optional unless you set infoblox_subnets to false)
 
-Configuration options are the same as for the core ISC dhcpd provider. Please refer to [Smart Proxy documentation] (https://theforeman.org/manuals/1.14/index.html#4.3.4DHCP) for detailed instructions.
+Configuration options are the same as for the core ISC dhcpd provider. Please refer to [Smart Proxy documentation](https://theforeman.org/manuals/1.14/index.html#4.3.4DHCP) for detailed instructions.
 
 ## Contributing
 
