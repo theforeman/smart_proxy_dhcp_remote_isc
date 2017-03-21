@@ -10,7 +10,7 @@ module Proxy::DHCP::RemoteISC
       container.dependency :parser, lambda {::Proxy::DHCP::RemoteISC::IscFileParser.new}
       container.dependency :config_file, lambda {::Proxy::DHCP::IscConfigurationFile.new(settings[:config], container.get_dependency(:parser))}
       container.dependency :subnet_service_initializer, (lambda do
-        ::Proxy::DHCP::RemoteISC::SubnetServiceInitializer.new(container.get_dependency(:config_file), settings[:config], settings[:leases],
+        ::Proxy::DHCP::RemoteISC::SubnetServiceInitializer.new(container.get_dependency(:config_file), settings[:leases],
                                                                container.get_dependency(:parser), container.get_dependency(:subnet_service))
       end)
       container.dependency :initialized_subnet_service, lambda {container.get_dependency(:subnet_service_initializer).initialized_subnet_service }

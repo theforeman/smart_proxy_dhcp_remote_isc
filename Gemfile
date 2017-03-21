@@ -9,6 +9,5 @@ group :development do
     gem 'test-unit'
   end
   gem 'mocha'
-  #gem 'smart_proxy', :github => 'theforeman/smart-proxy', :branch => 'develop'
-  gem 'smart_proxy', :path => '/home/wb/sandbox/smart-proxy', :branch => 'common-isc-bits'
+  gem 'smart_proxy', :github => 'theforeman/smart-proxy', :branch => 'develop'
 end

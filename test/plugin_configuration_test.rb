@@ -56,7 +56,6 @@ class ProductionDiWiringsTest < Test::Unit::TestCase
     assert_equal ::Proxy::DHCP::SubnetService, service_initializer.service.class
     assert_equal ::Proxy::DHCP::RemoteISC::IscFileParser, service_initializer.parser.class
     assert_equal ::Proxy::DHCP::IscConfigurationFile, service_initializer.config_file.class
-    assert_equal @settings[:config], service_initializer.config_path
     assert_equal @settings[:leases], service_initializer.leases_path
   end
 
