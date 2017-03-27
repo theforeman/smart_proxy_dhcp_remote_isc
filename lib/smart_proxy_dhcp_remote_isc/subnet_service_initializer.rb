@@ -2,7 +2,7 @@ require 'dhcp_common/isc/subnet_service_initialization'
 
 module Proxy::DHCP::RemoteISC
   class SubnetServiceInitializer
-    include ::Proxy::DHCP::IscSubnetServiceInitialization
+    include ::Proxy::DHCP::CommonISC::IscSubnetServiceInitialization
     include Proxy::Log
 
     attr_reader :config_file, :leases_path, :parser, :service

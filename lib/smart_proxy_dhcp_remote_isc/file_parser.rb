@@ -1,7 +1,7 @@
 require 'dhcp_common/isc/file_parser'
 
 module ::Proxy::DHCP::RemoteISC
-  class IscFileParser < ::Proxy::DHCP::IscFileParser
+  class IscFileParser < ::Proxy::DHCP::CommonISC::IscFileParser
     def initialize
       super(nil)
     end
