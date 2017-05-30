@@ -5,8 +5,9 @@ require 'smart_proxy_dhcp_remote_isc/plugin_configuration'
 require 'smart_proxy_dhcp_remote_isc/dhcp_remote_isc_plugin'
 require 'dhcp_common/subnet_service'
 require 'dhcp_common/isc/omapi_provider'
-require 'dhcp_common/isc/configuration_file'
-require 'smart_proxy_dhcp_remote_isc/file_parser'
+require 'rsec'
+require 'dhcp_common/isc/configuration_parser'
+require 'dhcp_common/isc/subnet_service_initialization'
 require 'smart_proxy_dhcp_remote_isc/subnet_service_initializer'
 
 class ConfigurationTest < ::Test::Unit::TestCase
@@ -38,13 +39,6 @@ class ProductionDiWiringsTest < Test::Unit::TestCase
     assert_equal ::Proxy::DHCP::SubnetService, provider.service.class
   end
 
-  def test_config_file_initialization
-    config_file = @container.get_dependency(:config_file)
-
-    assert_equal @settings[:config], config_file.path
-    assert config_file.parser
-  end
-
   def test_parser_initialization
     assert @container.get_dependency(:parser)
   end
@@ -53,10 +47,10 @@ class ProductionDiWiringsTest < Test::Unit::TestCase
     service_initializer = @container.get_dependency(:subnet_service_initializer)
 
     assert service_initializer
-    assert_equal ::Proxy::DHCP::SubnetService, service_initializer.service.class
-    assert_equal ::Proxy::DHCP::RemoteISC::IscFileParser, service_initializer.parser.class
-    assert_equal ::Proxy::DHCP::CommonISC::IscConfigurationFile, service_initializer.config_file.class
-    assert_equal @settings[:leases], service_initializer.leases_path
+    assert_equal ::Proxy::DHCP::SubnetService, service_initializer.subnet_service.class
+    assert_equal ::Proxy::DHCP::CommonISC::ConfigurationParser, service_initializer.parser.class
+    assert_equal @settings[:config], service_initializer.config_file_path
+    assert_equal @settings[:leases], service_initializer.leases_file_path
   end
 
   def test_initialized_subnet_service

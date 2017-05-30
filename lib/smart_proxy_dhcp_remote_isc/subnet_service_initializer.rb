@@ -1,41 +1,29 @@
 require 'dhcp_common/isc/subnet_service_initialization'
 
 module Proxy::DHCP::RemoteISC
-  class SubnetServiceInitializer
-    include ::Proxy::DHCP::CommonISC::IscSubnetServiceInitialization
+  class SubnetServiceInitializer < ::Proxy::DHCP::CommonISC::IscSubnetServiceInitialization
     include Proxy::Log
 
-    attr_reader :config_file, :leases_path, :parser, :service
+    attr_reader :config_file_path, :leases_file_path
 
-    def initialize(config_file, leases_file_path, isc_config_file_parser, subnet_service)
-      @config_file = config_file
-      @leases_path = leases_file_path
-      @parser = isc_config_file_parser
-      @service = subnet_service
+    def initialize(config_file_path, leases_file_path, parser, subnet_service)
+      @config_file_path = config_file_path
+      @leases_file_path = leases_file_path
+      super(subnet_service, parser)
     end
 
     def initialized_subnet_service
-      load_subnets
-
-      update_subnet_service_with_dhcp_records(hosts_and_leases_from_config(service, config_file))
-      update_subnet_service_with_dhcp_records(hosts_and_leases_from_leases(service, leases_path))
-
-      service
+      load_configuration_file(read_config_file, config_file_path)
+      load_leases_file(read_leases_file, leases_file_path)
+      subnet_service
     end
 
-    def load_subnets
-      service.add_subnets(*config_file.subnets)
+    def read_leases_file
+      File.read(File.expand_path(leases_file_path))
     end
 
-    def hosts_and_leases_from_config(subnet_service, config_file)
-      parser.parse_config_and_leases_for_records(subnet_service, config_file.read)
-    end
-
-    def hosts_and_leases_from_leases(subnet_service, path)
-      fd = File.open(File.expand_path(path), "r")
-      parser.parse_config_and_leases_for_records(subnet_service, fd.read)
-    ensure
-      fd.close unless fd.nil?
+    def read_config_file
+      File.read(File.expand_path(config_file_path))
     end
   end
 end

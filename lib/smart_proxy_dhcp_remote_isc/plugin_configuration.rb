@@ -7,10 +7,9 @@ module Proxy::DHCP::RemoteISC
                                          container.get_dependency(:memory_store), container.get_dependency(:memory_store),
                                          container.get_dependency(:memory_store), container.get_dependency(:memory_store))
       end)
-      container.dependency :parser, lambda {::Proxy::DHCP::RemoteISC::IscFileParser.new}
-      container.dependency :config_file, lambda {::Proxy::DHCP::CommonISC::IscConfigurationFile.new(settings[:config], container.get_dependency(:parser))}
+      container.dependency :parser, lambda {::Proxy::DHCP::CommonISC::ConfigurationParser.new}
       container.dependency :subnet_service_initializer, (lambda do
-        ::Proxy::DHCP::RemoteISC::SubnetServiceInitializer.new(container.get_dependency(:config_file), settings[:leases],
+        ::Proxy::DHCP::RemoteISC::SubnetServiceInitializer.new(settings[:config], settings[:leases],
                                                                container.get_dependency(:parser), container.get_dependency(:subnet_service))
       end)
       container.dependency :initialized_subnet_service, lambda {container.get_dependency(:subnet_service_initializer).initialized_subnet_service }
@@ -25,8 +24,8 @@ module Proxy::DHCP::RemoteISC
     def load_classes
       require 'dhcp_common/subnet_service'
       require 'dhcp_common/isc/omapi_provider'
-      require 'dhcp_common/isc/configuration_file'
-      require 'smart_proxy_dhcp_remote_isc/file_parser'
+      require 'dhcp_common/isc/configuration_parser'
+      require 'dhcp_common/isc/subnet_service_initialization'
       require 'smart_proxy_dhcp_remote_isc/subnet_service_initializer'
     end
   end
