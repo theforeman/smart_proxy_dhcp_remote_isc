@@ -4,6 +4,7 @@ require 'tempfile'
 require 'smart_proxy_dhcp_remote_isc/plugin_configuration'
 require 'smart_proxy_dhcp_remote_isc/dhcp_remote_isc_plugin'
 require 'dhcp_common/subnet_service'
+require 'dhcp_common/free_ips'
 require 'dhcp_common/isc/omapi_provider'
 require 'rsec'
 require 'dhcp_common/isc/configuration_parser'
@@ -23,7 +24,7 @@ class ProductionDiWiringsTest < Test::Unit::TestCase
   def setup
     @settings = {:server => "a_server", :omapi_port => 7911, :key_name => "key_name", :key_secret => "key_secret",
                  :subnets => ["192.168.0.0/255.255.255.0"], :config => Tempfile.new('config').path,
-                 :leases => Tempfile.new('leases').path}
+                 :leases => Tempfile.new('leases').path, :blacklist_duration_minutes => 100}
     @container = ::Proxy::DependencyInjection::Container.new
     ::Proxy::DHCP::RemoteISC::PluginConfiguration.new.load_dependency_injection_wirings(@container, @settings)
   end
@@ -37,6 +38,7 @@ class ProductionDiWiringsTest < Test::Unit::TestCase
     assert_equal @settings[:key_secret], provider.key_secret
     assert_equal Set.new(@settings[:subnets]), provider.managed_subnets
     assert_equal ::Proxy::DHCP::SubnetService, provider.service.class
+    assert_equal ::Proxy::DHCP::FreeIps, provider.free_ips.class
   end
 
   def test_parser_initialization
@@ -55,5 +57,12 @@ class ProductionDiWiringsTest < Test::Unit::TestCase
 
   def test_initialized_subnet_service
     assert @container.get_dependency(:initialized_subnet_service)
+  end
+
+  def test_free_ips_configuration
+    free_ips = @container.get_dependency(:free_ips)
+
+    assert free_ips
+    assert_equal @settings[:blacklist_duration_minutes], free_ips.blacklist_interval
   end
 end

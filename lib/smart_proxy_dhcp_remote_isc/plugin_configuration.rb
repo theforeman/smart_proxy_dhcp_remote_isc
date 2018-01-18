@@ -13,16 +13,18 @@ module Proxy::DHCP::RemoteISC
                                                                container.get_dependency(:parser), container.get_dependency(:subnet_service))
       end)
       container.dependency :initialized_subnet_service, lambda {container.get_dependency(:subnet_service_initializer).initialized_subnet_service }
+      container.singleton_dependency :free_ips, lambda {::Proxy::DHCP::FreeIps.new(settings[:blacklist_duration_minutes]) }
 
       container.dependency :dhcp_provider, (lambda do
         Proxy::DHCP::CommonISC::IscOmapiProvider.new(
             settings[:server], settings[:omapi_port], settings[:subnets], settings[:key_name], settings[:key_secret],
-            container.get_dependency(:initialized_subnet_service))
+            container.get_dependency(:initialized_subnet_service), container.get_dependency(:free_ips))
       end)
     end
 
     def load_classes
       require 'dhcp_common/subnet_service'
+      require 'dhcp_common/free_ips'
       require 'dhcp_common/isc/omapi_provider'
       require 'dhcp_common/isc/configuration_parser'
       require 'dhcp_common/isc/subnet_service_initialization'
