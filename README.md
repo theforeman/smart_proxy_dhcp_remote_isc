@@ -13,7 +13,7 @@ This plugin is compatible with Smart Proxy 1.15 or higher.
 
 When installing using "gem", make sure to install the bundle file:
 
-    echo "gem 'smart_proxy_dhcp_infoblox'" > /usr/share/foreman-proxy/bundler.d/dhcp_remote_isc.rb
+    echo "gem 'smart_proxy_dhcp_remote_isc'" > /usr/share/foreman-proxy/bundler.d/dhcp_remote_isc.rb
 
 ## Configuration
 
