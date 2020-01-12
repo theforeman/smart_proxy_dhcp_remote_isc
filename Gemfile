@@ -2,12 +2,8 @@ source 'https://rubygems.org'
 gemspec
 
 group :development do
-  if RUBY_VERSION < '1.9.3'
-    gem 'rake', '< 11'
-  else
-    gem 'rake'
-    gem 'test-unit'
-  end
+  gem 'rake'
+  gem 'test-unit'
 
   if RUBY_VERSION < '2.2.2'
     gem 'rack-test', '~> 0.7.0'
