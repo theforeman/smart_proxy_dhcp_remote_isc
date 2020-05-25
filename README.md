@@ -1,7 +1,5 @@
 # SmartProxyDhcpRemoteISC
 
-[![Build Status](https://travis-ci.org/theforeman/smart_proxy_dhcp_remote_isc.svg?branch=master)](https://travis-ci.org/theforeman/smart_proxy_dhcp_remote_isc)
-
 This plugin allows to interface with ISC dhcpd servers that have configuration and lease files shared over NFS
 
 ## Installation
