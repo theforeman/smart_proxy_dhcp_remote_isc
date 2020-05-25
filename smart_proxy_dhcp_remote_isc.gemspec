@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.name        = 'smart_proxy_dhcp_remote_isc'
   s.version     = Proxy::DHCP::RemoteISC::VERSION
   s.date        = Date.today.to_s
-  s.license     = 'GPLv3'
+  s.license     = 'GPL-3.0'
   s.authors     = ['Dmitri Dolguikh']
   s.email       = ['dmitri@appliedlogic.ca']
   s.homepage    = 'https://github.com/theforeman/smart_proxy_dhcp_remote_isc'
