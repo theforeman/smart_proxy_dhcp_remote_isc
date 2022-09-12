@@ -37,7 +37,7 @@ class IntegrationTest < ::Test::Unit::TestCase
       @om ||= StringIO.new
     end
 
-    def om_disconnect(msg)
+    def om_disconnect(_msg)
       @om = nil
     end
   end
