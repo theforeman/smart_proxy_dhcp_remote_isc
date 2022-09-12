@@ -112,10 +112,10 @@ EOF
 
   def test_create_record
     record = {
-        "hostname" => "test-02",
-        "ip"       => "10.0.0.250",
-        "mac"      => "10:10:10:10:10:10",
-        "network"  => "10.0.0.0",
+      "hostname" => "test-02",
+      "ip" => "10.0.0.250",
+      "mac" => "10:10:10:10:10:10",
+      "network" => "10.0.0.0",
     }
     post "/10.0.0.0", record
     assert last_response.ok?, "Last response was not ok: #{last_response.status} #{last_response.body}"
