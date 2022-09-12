@@ -18,7 +18,8 @@ module Proxy::DHCP::RemoteISC
       container.dependency :dhcp_provider, (lambda do
         Proxy::DHCP::CommonISC::IscOmapiProvider.new(
           settings[:server], settings[:omapi_port], settings[:subnets], settings[:key_name], settings[:key_secret],
-          container.get_dependency(:initialized_subnet_service), container.get_dependency(:free_ips))
+          container.get_dependency(:initialized_subnet_service), container.get_dependency(:free_ips)
+        )
       end)
     end
 
