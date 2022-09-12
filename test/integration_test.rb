@@ -54,7 +54,7 @@ EOF
     @parser = ::Proxy::DHCP::CommonISC::ConfigurationParser.new
 
     subnet_service_initializer =
-        SubnetServiceInitializerForTesting.new("config_path", "leases_path", @parser, @subnet_service)
+      SubnetServiceInitializerForTesting.new("config_path", "leases_path", @parser, @subnet_service)
     @initialized_subnet_service = subnet_service_initializer.initialized_subnet_service
 
     @free_ips = ::Proxy::DHCP::FreeIps.new(10)
