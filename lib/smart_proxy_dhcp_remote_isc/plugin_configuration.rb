@@ -7,13 +7,13 @@ module Proxy::DHCP::RemoteISC
                                          container.get_dependency(:memory_store), container.get_dependency(:memory_store),
                                          container.get_dependency(:memory_store), container.get_dependency(:memory_store))
       end)
-      container.dependency :parser, lambda {::Proxy::DHCP::CommonISC::ConfigurationParser.new}
+      container.dependency :parser, -> { ::Proxy::DHCP::CommonISC::ConfigurationParser.new }
       container.dependency :subnet_service_initializer, (lambda do
         ::Proxy::DHCP::RemoteISC::SubnetServiceInitializer.new(settings[:config], settings[:leases],
                                                                container.get_dependency(:parser), container.get_dependency(:subnet_service))
       end)
-      container.dependency :initialized_subnet_service, lambda {container.get_dependency(:subnet_service_initializer).initialized_subnet_service }
-      container.singleton_dependency :free_ips, lambda {::Proxy::DHCP::FreeIps.new(settings[:blacklist_duration_minutes]) }
+      container.dependency :initialized_subnet_service, -> { container.get_dependency(:subnet_service_initializer).initialized_subnet_service }
+      container.singleton_dependency :free_ips, -> { ::Proxy::DHCP::FreeIps.new(settings[:blacklist_duration_minutes]) }
 
       container.dependency :dhcp_provider, (lambda do
         Proxy::DHCP::CommonISC::IscOmapiProvider.new(
