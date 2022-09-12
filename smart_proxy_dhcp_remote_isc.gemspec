@@ -1,4 +1,4 @@
-require File.expand_path('../lib/smart_proxy_dhcp_remote_isc/version', __FILE__)
+require File.expand_path('lib/smart_proxy_dhcp_remote_isc/version', __dir__)
 
 Gem::Specification.new do |s|
   s.name        = 'smart_proxy_dhcp_remote_isc'
