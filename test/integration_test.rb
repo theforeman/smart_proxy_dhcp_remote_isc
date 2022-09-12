@@ -66,7 +66,6 @@ EOF
                              "hostname" => "testing-01", "hardware_type" => "ethernet"}
   end
 
-
   def test_get_subnets
     get "/"
 
