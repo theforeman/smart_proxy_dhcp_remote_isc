@@ -85,7 +85,7 @@ class IntegrationTest < ::Test::Unit::TestCase
     assert_equal 1, parsed_response['reservations'].size
     assert parsed_response.key?('leases')
     assert parsed_response['leases'].empty?
-    assert_equal@expected_reservation, parsed_response['reservations'].first
+    assert_equal @expected_reservation, parsed_response['reservations'].first
   end
 
   def test_get_unused_ip
