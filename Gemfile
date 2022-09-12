@@ -3,6 +3,12 @@
 source 'https://rubygems.org'
 gemspec
 
+group :rubocop do
+  gem 'rubocop', '~> 1.28.0'
+  gem 'rubocop-performance'
+  gem 'rubocop-rake'
+end
+
 group :test do
   gem 'ci_reporter_test_unit'
   gem 'concurrent-ruby', '~> 1.0', require: 'concurrent'

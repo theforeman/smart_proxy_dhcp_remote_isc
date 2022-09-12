@@ -2,6 +2,7 @@
 
 module Proxy::DHCP::RemoteISC
   class PluginConfiguration
+    # rubocop:disable Layout/LineLength
     def load_dependency_injection_wirings(container, settings)
       container.dependency :memory_store, ::Proxy::MemoryStore
       container.dependency :subnet_service, (lambda do
@@ -24,6 +25,7 @@ module Proxy::DHCP::RemoteISC
         )
       end)
     end
+    # rubocop:enable Layout/LineLength
 
     def load_classes
       require 'dhcp_common/subnet_service'
