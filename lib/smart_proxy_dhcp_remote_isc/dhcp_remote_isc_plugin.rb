@@ -4,7 +4,7 @@ module Proxy::DHCP::RemoteISC
 
     requires :dhcp, '>= 1.16'
     default_settings :config => '/etc/dhcp/dhcpd.conf', :leases => '/var/lib/dhcpd/dhcpd.leases',
-                     :omapi_port => '7911', :blacklist_duration_minutes => 30*60
+                     :omapi_port => '7911', :blacklist_duration_minutes => 30 * 60
 
     validate_readable :config, :leases
 
