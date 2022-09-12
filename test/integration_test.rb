@@ -19,16 +19,16 @@ class IntegrationTest < ::Test::Unit::TestCase
 
   class SubnetServiceInitializerForTesting < Proxy::DHCP::RemoteISC::SubnetServiceInitializer
     def read_leases_file
-      return <<EOF
-host testing-01 { hardware ethernet 11:22:33:a9:61:09; fixed-address 10.0.0.200; dynamic; }
-EOF
+      <<~LEASES
+        host testing-01 { hardware ethernet 11:22:33:a9:61:09; fixed-address 10.0.0.200; dynamic; }
+      LEASES
     end
 
     def read_config_file
-      return <<EOF
-subnet 10.0.0.0 netmask 255.255.255.0 {
-}
-EOF
+      <<~CONFIG
+        subnet 10.0.0.0 netmask 255.255.255.0 {
+        }
+      CONFIG
     end
   end
 
