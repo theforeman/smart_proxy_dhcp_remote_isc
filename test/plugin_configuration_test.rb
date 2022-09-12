@@ -22,9 +22,9 @@ end
 
 class ProductionDiWiringsTest < Test::Unit::TestCase
   def setup
-    @settings = {:server => "a_server", :omapi_port => 7911, :key_name => "key_name", :key_secret => "key_secret",
-                 :subnets => ["192.168.0.0/255.255.255.0"], :config => Tempfile.new('config').path,
-                 :leases => Tempfile.new('leases').path, :blacklist_duration_minutes => 100}
+    @settings = { :server => "a_server", :omapi_port => 7911, :key_name => "key_name", :key_secret => "key_secret",
+                  :subnets => ["192.168.0.0/255.255.255.0"], :config => Tempfile.new('config').path,
+                  :leases => Tempfile.new('leases').path, :blacklist_duration_minutes => 100 }
     @container = ::Proxy::DependencyInjection::Container.new
     ::Proxy::DHCP::RemoteISC::PluginConfiguration.new.load_dependency_injection_wirings(@container, @settings)
   end

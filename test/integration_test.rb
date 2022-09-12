@@ -61,9 +61,9 @@ class IntegrationTest < ::Test::Unit::TestCase
 
     @server = IscOmapiProviderForTesting.new("127.0.0.1", '7911', [], 'key', 'secret', @initialized_subnet_service, @free_ips)
 
-    @expected_reservation = {"name" => "testing-01", "ip" => "10.0.0.200", "mac" => "11:22:33:a9:61:09",
-                             "subnet" => "10.0.0.0/255.255.255.0", "type" => "reservation", "deleteable" => true,
-                             "hostname" => "testing-01", "hardware_type" => "ethernet"}
+    @expected_reservation = { "name" => "testing-01", "ip" => "10.0.0.200", "mac" => "11:22:33:a9:61:09",
+                              "subnet" => "10.0.0.0/255.255.255.0", "type" => "reservation", "deleteable" => true,
+                              "hostname" => "testing-01", "hardware_type" => "ethernet" }
   end
 
   def test_get_subnets
