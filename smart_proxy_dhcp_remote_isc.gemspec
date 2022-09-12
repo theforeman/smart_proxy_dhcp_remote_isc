@@ -1,10 +1,8 @@
 require File.expand_path('../lib/smart_proxy_dhcp_remote_isc/version', __FILE__)
-require 'date'
 
 Gem::Specification.new do |s|
   s.name        = 'smart_proxy_dhcp_remote_isc'
   s.version     = Proxy::DHCP::RemoteISC::VERSION
-  s.date        = Date.today.to_s
   s.license     = 'GPL-3.0'
   s.authors     = ['Dmitri Dolguikh']
   s.email       = ['dmitri@appliedlogic.ca']
