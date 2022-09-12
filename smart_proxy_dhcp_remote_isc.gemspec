@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require File.expand_path('lib/smart_proxy_dhcp_remote_isc/version', __dir__)
 
 Gem::Specification.new do |s|

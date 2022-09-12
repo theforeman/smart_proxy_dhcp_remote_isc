@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'ci/reporter/rake/test_unit'
 require 'rake'
 require 'rake/testtask'

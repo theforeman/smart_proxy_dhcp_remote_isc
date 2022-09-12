@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Proxy::DHCP::RemoteISC
   class Plugin < ::Proxy::Provider
     plugin :dhcp_remote_isc, ::Proxy::DHCP::RemoteISC::VERSION

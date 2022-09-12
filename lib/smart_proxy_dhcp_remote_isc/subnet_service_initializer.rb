@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'dhcp_common/isc/subnet_service_initialization'
 
 module Proxy::DHCP::RemoteISC

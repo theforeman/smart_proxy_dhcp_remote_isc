@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 group :dhcp_remote_isc do
   gem 'rsec', '< 1'
 end

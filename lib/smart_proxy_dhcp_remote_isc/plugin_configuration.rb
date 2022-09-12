@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Proxy::DHCP::RemoteISC
   class PluginConfiguration
     def load_dependency_injection_wirings(container, settings)
