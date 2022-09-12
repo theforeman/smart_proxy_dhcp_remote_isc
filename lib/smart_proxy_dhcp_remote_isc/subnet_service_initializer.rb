@@ -27,4 +27,3 @@ module Proxy::DHCP::RemoteISC
     end
   end
 end
-
